@@ -1,0 +1,33 @@
+.divider {
+  width: 100%;
+  height: 3px;
+  background: var(--divider-gradient);
+  position: relative;
+  overflow: hidden;
+}
+
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 200, 50, 0.35) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: dividerShimmer 5s ease-in-out infinite;
+}
+
+@keyframes dividerShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  40%, 100% {
+    transform: translateX(300%);
+  }
+}

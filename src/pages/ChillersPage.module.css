@@ -1,0 +1,225 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 0 var(--page-padding);
+}
+
+/* ---- Back button ---- */
+.back {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(14px, 2vw, 22px);
+  color: var(--text-muted);
+  padding: clamp(14px, 2vw, 22px) 0;
+  min-height: 44px;
+  align-self: flex-start;
+  background: linear-gradient(
+    180deg,
+    var(--bg-deep) 0%,
+    var(--bg-deep) 70%,
+    transparent 100%
+  );
+  padding-right: 16px;
+}
+
+.back:active {
+  opacity: 0.7;
+}
+
+/* ---- Header ---- */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: clamp(12px, 2vw, 24px);
+  padding-bottom: clamp(24px, 3.5vw, 44px);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(40px, 6.5vw, 70px);
+  color: var(--text-primary);
+  text-align: center;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.subtitle {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(14px, 2.3vw, 25px);
+  color: var(--text-subtle);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-top: clamp(6px, 1vw, 12px);
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+
+/* ---- Hero showcase ---- */
+.hero {
+  position: relative;
+  border-radius: var(--glass-radius);
+  overflow: hidden;
+  background-color: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  aspect-ratio: 16 / 11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroImage {
+  height: 90%;
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+
+.heroOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: clamp(16px, 2.5vw, 32px);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+}
+
+.heroTitle {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(22px, 3.7vw, 40px);
+  color: var(--text-primary);
+  letter-spacing: 2px;
+}
+
+.heroDetail {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(11px, 1.6vw, 18px);
+  color: var(--text-subtle);
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+/* ---- Sections ---- */
+.section {
+  padding: clamp(28px, 4vw, 52px) 0;
+}
+
+.sectionTitle {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(16px, 2.5vw, 28px);
+  color: var(--text-muted);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+
+/* ---- Equipment grid — 2 col ---- */
+.equipmentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--tile-gap);
+}
+
+/* ---- Vending grid — 2 col ---- */
+.vendingGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--tile-gap);
+}
+
+/* ---- POS Solutions grid — 2x4 ---- */
+.posGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 1.5vw, 20px);
+}
+
+.posTile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(60px, 8vw, 90px);
+  background-color: var(--glass-bg);
+  border-radius: var(--glass-radius);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  padding: clamp(12px, 1.8vw, 22px);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.posTile:active {
+  transform: scale(0.97);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.posLabel {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(12px, 1.85vw, 20px);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+/* ---- Closing image ---- */
+.closing {
+  position: relative;
+  border-radius: var(--glass-radius);
+  overflow: hidden;
+  background-color: var(--glass-bg);
+  margin-bottom: clamp(8px, 1.2vw, 16px);
+}
+
+.closingImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+.closingOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(16px, 2.5vw, 32px);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+}
+
+.closingText {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(18px, 3vw, 32px);
+  color: var(--text-primary);
+  letter-spacing: 2px;
+}
+
+/* ---- Footer ---- */
+.footer {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  color: var(--text-subtle);
+  font-size: clamp(12px, 1.85vw, 20px);
+  text-align: center;
+  padding: clamp(20px, 3vw, 39px) 0;
+}

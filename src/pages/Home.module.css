@@ -1,0 +1,105 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 0 var(--page-padding);
+}
+
+/* ---- Hero section ---- */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: clamp(60px, 7.6vw, 82px);
+  padding-bottom: clamp(20px, 3vw, 40px);
+  overflow: hidden;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(44px, 7.4vw, 80px);
+  color: var(--text-primary);
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  position: relative;
+  z-index: 1;
+  width: clamp(140px, 23.5vw, 254px);
+  margin-top: clamp(12px, 2vw, 24px);
+}
+
+.logoImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.tagline {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  color: var(--text-subtle);
+  font-size: clamp(22px, 3.7vw, 40px);
+  text-align: center;
+  margin-top: clamp(16px, 2.5vw, 32px);
+}
+
+.cta {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(12px, 1.85vw, 20px);
+  text-align: center;
+  margin-top: clamp(8px, 1.5vw, 20px);
+  margin-bottom: clamp(16px, 2.5vw, 32px);
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    var(--text-subtle) 0%,
+    var(--text-subtle) 40%,
+    rgba(255, 255, 255, 0.9) 50%,
+    var(--text-subtle) 60%,
+    var(--text-subtle) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: ctaShimmer 4s ease-in-out infinite;
+}
+
+@keyframes ctaShimmer {
+  0%, 100% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: -50% 0;
+  }
+}
+
+/* ---- Tile grid ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--tile-gap);
+  padding-bottom: var(--tile-gap);
+}
+
+/* ---- Footer ---- */
+.footer {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  color: var(--text-subtle);
+  font-size: clamp(12px, 1.85vw, 20px);
+  text-align: center;
+  padding: clamp(20px, 3vw, 39px) 0;
+}

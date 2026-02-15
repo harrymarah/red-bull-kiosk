@@ -1,0 +1,46 @@
+:root {
+  /* Brand colours (from Figma) */
+  --rb-red: rgba(210, 0, 60, 1);
+  --rb-yellow: rgba(255, 204, 0, 1);
+  --rb-blue: rgba(50, 89, 159, 1);
+
+  /* Background */
+  --bg-deep: #0a0048;
+  --bg-overlay: linear-gradient(180deg, rgba(15, 0, 105, 0) 0%, rgba(15, 0, 105, 1) 100%);
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --text-subtle: rgba(255, 255, 255, 0.5);
+  --text-faint: rgba(255, 255, 255, 0.4);
+
+  /* Glass panels */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-radius: 27px;
+  --glass-blur: blur(3.5px);
+  --glass-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 1px 0 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+    inset -1px 0 2px rgba(0, 0, 0, 0.16);
+
+  /* Gradient divider */
+  --divider-gradient: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(210, 0, 60, 1) 25%,
+    rgba(255, 204, 0, 1) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  /* Typography */
+  --font-primary: 'Futura', 'Futura-Medium', Helvetica, Arial, sans-serif;
+
+  /* Spacing */
+  --tile-gap: clamp(20px, 2.6vw, 50px);
+  --page-padding: clamp(24px, 4.5vw, 49px);
+
+  /* Kiosk dimensions (reference) */
+  --kiosk-width: 1080px;
+  --kiosk-height: 1920px;
+}
