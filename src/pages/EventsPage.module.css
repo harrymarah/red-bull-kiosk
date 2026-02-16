@@ -89,6 +89,22 @@
   margin-bottom: clamp(20px, 3vw, 40px);
 }
 
+.featuredChip {
+  position: absolute;
+  top: clamp(12px, 1.8vw, 20px);
+  left: clamp(12px, 1.8vw, 20px);
+  z-index: 2;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(9px, 1.3vw, 14px);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background: rgba(210, 0, 60, 0.8);
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+
 .featuredImage {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -231,6 +247,14 @@
   font-weight: 500;
   font-size: clamp(10px, 1.5vw, 16px);
   color: var(--text-faint);
+}
+
+.eventDateRange {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(10px, 1.5vw, 16px);
+  color: var(--text-subtle);
+  margin-top: 2px;
   margin-bottom: clamp(4px, 0.6vw, 8px);
 }
 
@@ -245,6 +269,7 @@
   background: rgba(210, 0, 60, 0.12);
   padding: 3px 10px;
   border-radius: 20px;
+  margin-top: clamp(4px, 0.6vw, 8px);
 }
 
 /* ---- Thumbnail ---- */

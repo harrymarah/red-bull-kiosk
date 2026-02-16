@@ -46,8 +46,9 @@ const events = [
   },
   {
     name: 'London Premier Padel P1',
-    day: '03–09',
+    day: '03',
     month: 'Aug',
+    dateRange: '03–09 Aug',
     location: 'London, United Kingdom',
     tag: 'Padel',
     image: '/assets/images/events/premier-padel.png',
@@ -97,8 +98,9 @@ export default function EventsPage() {
       {/* Featured event */}
       {featured && (
         <section className={styles.featured}>
+          <span className={styles.featuredChip}>FEATURED EVENT</span>
           <img
-            src={featured.image}
+            src="/assets/images/events/soapbox-race-featured.png"
             alt={featured.name}
             className={styles.featuredImage}
           />
@@ -127,6 +129,7 @@ export default function EventsPage() {
               <div className={styles.eventDetails}>
                 <h4 className={styles.eventName}>{event.name}</h4>
                 <p className={styles.eventLocation}>{event.location}</p>
+                {event.dateRange && <p className={styles.eventDateRange}>{event.dateRange}</p>}
                 <span className={styles.eventTag}>{event.tag}</span>
               </div>
               <img
