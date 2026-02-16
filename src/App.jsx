@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import CategoryPage from './pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
 import ChillersPage from './pages/ChillersPage';
+import EventsPage from './pages/EventsPage';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="category/product" element={<ProductPage />} />
           <Route path="category/chillers" element={<ChillersPage />} />
+          <Route path="category/events" element={<EventsPage />} />
           <Route path="category/:slug" element={<CategoryPage />} />
         </Route>
       </Routes>
