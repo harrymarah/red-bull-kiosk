@@ -109,7 +109,7 @@ export default function BrandPage() {
           <video
             ref={videoRef}
             className={styles.video}
-            src="/assets/video/red-bull-2026.mp4"
+            src="/assets/video/red-bull-2026.webm"
             playsInline
             preload="metadata"
             poster="/assets/images/worb/hero.jpg"
