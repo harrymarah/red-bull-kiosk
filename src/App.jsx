@@ -5,6 +5,7 @@ import CategoryPage from './pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
 import ChillersPage from './pages/ChillersPage';
 import EventsPage from './pages/EventsPage';
+import BrandPage from './pages/BrandPage';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="category/product" element={<ProductPage />} />
           <Route path="category/chillers" element={<ChillersPage />} />
           <Route path="category/events" element={<EventsPage />} />
+          <Route path="category/brand" element={<BrandPage />} />
           <Route path="category/:slug" element={<CategoryPage />} />
         </Route>
       </Routes>

@@ -1,3 +1,4 @@
+import { useEffect, useRef, useCallback } from 'react';
 import OrbitalRings from '../components/OrbitalRings';
 import GradientDivider from '../components/GradientDivider';
 import CategoryTile from '../components/CategoryTile';
@@ -50,6 +51,25 @@ const categories = [
 ];
 
 export default function Home() {
+  const gridRef = useRef(null);
+
+  const runAttract = useCallback(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const tiles = grid.querySelectorAll('[data-tile]');
+    tiles.forEach((tile, i) => {
+      setTimeout(() => {
+        tile.setAttribute('data-attract', '');
+        setTimeout(() => tile.removeAttribute('data-attract'), 300);
+      }, i * 150);
+    });
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(runAttract, 45000);
+    return () => clearInterval(id);
+  }, [runAttract]);
+
   return (
     <div className={styles.page}>
       <header className={styles.hero}>
@@ -64,7 +84,7 @@ export default function Home() {
         <GradientDivider />
       </header>
 
-      <main className={styles.grid}>
+      <main className={styles.grid} ref={gridRef}>
         {categories.map((cat) => (
           <CategoryTile
             key={cat.id}
@@ -73,12 +93,13 @@ export default function Home() {
             subtitle={cat.subtitle}
             span={cat.span}
             image={cat.image}
+            data-tile
           />
         ))}
       </main>
 
       <footer className={styles.footer}>
-        RED BULL KIOSK EXPERIENCE &bull; OFFLINE READY
+        RED BULL KIOSK EXPERIENCE &bull; <span className={styles.offlineLabel}>OFFLINE READY</span><span className={styles.statusDot} />
       </footer>
     </div>
   );

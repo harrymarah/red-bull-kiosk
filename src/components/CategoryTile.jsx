@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import styles from './CategoryTile.module.css';
 
-export default function CategoryTile({ to, title, subtitle, image, span = 'full' }) {
+export default function CategoryTile({ to, title, subtitle, image, span = 'full', ...rest }) {
   return (
-    <Link to={to} className={`${styles.tile} ${styles[span]}`}>
+    <Link to={to} className={`${styles.tile} ${styles[span]}`} {...rest}>
       {image && <img src={image} alt="" className={styles.image} />}
       <div className={styles.content}>
         <div className={styles.text}>
