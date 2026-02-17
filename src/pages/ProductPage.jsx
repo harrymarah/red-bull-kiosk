@@ -112,10 +112,6 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className={styles.footer}>
-        RED BULL KIOSK EXPERIENCE · OFFLINE READY
-      </footer>
     </div>
   );
 }

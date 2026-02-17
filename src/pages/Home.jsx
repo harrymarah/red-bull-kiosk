@@ -28,6 +28,13 @@ const categories = [
     to: '/category/fitness',
   },
   {
+    id: 'market',
+    title: 'CATEGORY',
+    subtitle: 'MARKET PERFORMANCE',
+    span: 'full',
+    to: '/category/market',
+  },
+  {
     id: 'events',
     title: '2026',
     subtitle: 'EVENTS',
@@ -98,9 +105,6 @@ export default function Home() {
         ))}
       </main>
 
-      <footer className={styles.footer}>
-        RED BULL KIOSK EXPERIENCE &bull; <span className={styles.offlineLabel}>OFFLINE READY</span><span className={styles.statusDot} />
-      </footer>
     </div>
   );
 }

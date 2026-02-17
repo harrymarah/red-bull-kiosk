@@ -10,6 +10,11 @@ export default function Layout() {
       <div className={styles.content}>
         <Outlet />
       </div>
+      <footer className={styles.footer}>
+        RED BULL KIOSK EXPERIENCE &bull;{' '}
+        <span className={styles.offlineLabel}>OFFLINE READY</span>
+        <span className={styles.statusDot} />
+      </footer>
     </div>
   );
 }

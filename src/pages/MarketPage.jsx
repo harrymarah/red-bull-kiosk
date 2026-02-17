@@ -113,9 +113,6 @@ export default function MarketPage() {
         </div>
       </section>
 
-      <footer className={styles.footer}>
-        SOURCE: NIELSEN SCANTRACK · TOTAL COVERAGE
-      </footer>
     </div>
   );
 }

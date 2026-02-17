@@ -135,10 +135,6 @@ export default function ChillersPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className={styles.footer}>
-        RED BULL KIOSK EXPERIENCE · OFFLINE READY
-      </footer>
     </div>
   );
 }

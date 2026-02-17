@@ -152,10 +152,6 @@ export default function NewProductsPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className={styles.footer}>
-        ALL EDITIONS &bull; SUGARFREE &bull; 355ML
-      </footer>
     </div>
   );
 }
