@@ -4,17 +4,17 @@ import ProductCard from '../components/ProductCard';
 import styles from './ProductPage.module.css';
 
 const products = [
-  { name: 'Energy Drink', image: '/assets/images/product_images/GB_ED_250ml_Energy Drink_COUNTRY_RGB__Cold_Open_Front_DRES.png' },
-  { name: 'Zero', image: '/assets/images/product_images/GB_ZR_250ml_Zero_COUNTRY_RGB_PACKRQ-1993_Cold_Open_Front_DRES.png' },
-  { name: 'Sugarfree', image: '/assets/images/product_images/GB_SF_250ml_Sugarfree_COUNTRY_RGB__Cold_Open_Front_DRES.png' },
-  { name: 'Pink Edition', image: '/assets/images/product_images/GB_SF-FF_355ml_AC_The Pink Edition Sugarfree_COUNTRY_RGB__Cold_Open_Front_DRES.png' },
-  { name: 'Blue Edition', image: '/assets/images/product_images/GB_SF-JB_355ml_AC_The Blue Edition Sugarfree_COUNTRY_RGB_auto_Cold_Open_Front_DRES.png' },
-  { name: 'Lilac Edition', image: '/assets/images/product_images/GB_SF-WPG_355ml_AC_The Lilac Edition Sugarfree_COUNTRY_RGB_PACKRQ-2697_Cold_Open_Front_DRES.png' },
-  { name: 'Coconut Edition', image: '/assets/images/product_images/GB_SF-CC_355ml_AC_The Coconut Edition Sugarfree_COUNTRY_RGB_auto_Cold_Open_Front_DRES.png' },
-  { name: 'Peach Edition', image: '/assets/images/product_images/GB_SF-WP_355ml_AC_The Peach Edition Sugarfree_COUNTRY_RGB_PACKRQ-3190_Cold_Open_Front_DRES.png' },
-  { name: 'Ice Edition', image: '/assets/images/product_images/GB_SF-IGB_355ml_AC_The Ice Edition Sugarfree_COUNTRY_RGB_PACKRQ-2744_Cold_Open_Front_DRES.png' },
-  { name: 'Apple Edition', image: '/assets/images/product_images/GB_SF-FAI_355ml_AC_The Apple Edition Sugarfree_COUNTRY_RGB_PACKRQ-3955_Cold_Open_Front_DRES.png' },
-  { name: 'Spring Edition', image: '/assets/images/product_images/GB_CS_355ml_AC_The Spring Edition_COUNTRY_RGB_PACKRQ-3810_Cold_Open_Front_DRES.png' },
+  { name: 'Energy Drink', size: '250ml', image: '/assets/images/product_images/GB_ED_250ml_Energy Drink_COUNTRY_RGB__Cold_Open_Front_DRES.png' },
+  { name: 'Zero', size: '250ml', image: '/assets/images/product_images/GB_ZR_250ml_Zero_COUNTRY_RGB_PACKRQ-1993_Cold_Open_Front_DRES.png' },
+  { name: 'Sugarfree', size: '250ml', image: '/assets/images/product_images/GB_SF_250ml_Sugarfree_COUNTRY_RGB__Cold_Open_Front_DRES.png' },
+  { name: 'Pink Edition', size: '355ml', image: '/assets/images/product_images/GB_SF-FF_355ml_AC_The Pink Edition Sugarfree_COUNTRY_RGB__Cold_Open_Front_DRES.png' },
+  { name: 'Blue Edition', size: '355ml', image: '/assets/images/product_images/GB_SF-JB_355ml_AC_The Blue Edition Sugarfree_COUNTRY_RGB_auto_Cold_Open_Front_DRES.png' },
+  { name: 'Lilac Edition', size: '355ml', image: '/assets/images/product_images/GB_SF-WPG_355ml_AC_The Lilac Edition Sugarfree_COUNTRY_RGB_PACKRQ-2697_Cold_Open_Front_DRES.png' },
+  { name: 'Coconut Edition', size: '355ml', image: '/assets/images/product_images/GB_SF-CC_355ml_AC_The Coconut Edition Sugarfree_COUNTRY_RGB_auto_Cold_Open_Front_DRES.png' },
+  { name: 'Peach Edition', size: '355ml', image: '/assets/images/product_images/GB_SF-WP_355ml_AC_The Peach Edition Sugarfree_COUNTRY_RGB_PACKRQ-3190_Cold_Open_Front_DRES.png' },
+  { name: 'Ice Edition', size: '355ml', image: '/assets/images/product_images/GB_SF-IGB_355ml_AC_The Ice Edition Sugarfree_COUNTRY_RGB_PACKRQ-2744_Cold_Open_Front_DRES.png' },
+  { name: 'Apple Edition', size: '355ml', image: '/assets/images/product_images/GB_SF-FAI_355ml_AC_The Apple Edition Sugarfree_COUNTRY_RGB_PACKRQ-3955_Cold_Open_Front_DRES.png' },
+  { name: 'Spring Edition', size: '355ml', image: '/assets/images/product_images/GB_CS_355ml_AC_The Spring Edition_COUNTRY_RGB_PACKRQ-3810_Cold_Open_Front_DRES.png' },
 ];
 
 const ingredients = [
@@ -82,6 +82,7 @@ export default function ProductPage() {
               key={product.name}
               image={product.image}
               name={product.name}
+              size={product.size}
             />
           ))}
         </div>
