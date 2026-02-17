@@ -1,0 +1,257 @@
+/* ---- Wrapper ---- */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.5vw, 18px);
+}
+
+/* ---- Callout panel ---- */
+.callout {
+  min-height: clamp(70px, 10vw, 110px);
+  border-radius: var(--glass-radius);
+  overflow: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+
+.calloutVisible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.calloutInner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(3px, 0.5vw, 6px);
+  padding: clamp(14px, 2vw, 24px) clamp(16px, 2.5vw, 30px);
+  background-color: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--glass-radius);
+  height: 100%;
+}
+
+.calloutHighlight {
+  background-color: rgba(210, 0, 60, 0.12);
+  border-color: rgba(210, 0, 60, 0.25);
+}
+
+.calloutTop {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.2vw, 14px);
+}
+
+.calloutName {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(13px, 1.9vw, 20px);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.calloutBadge {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(9px, 1.2vw, 13px);
+  color: #fff;
+  background: var(--rb-red);
+  border-radius: 100px;
+  padding: 2px 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.calloutNum {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(28px, 4.5vw, 50px);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.calloutSub {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(10px, 1.35vw, 14px);
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---- Chart area ---- */
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(5px, 0.8vw, 10px);
+  height: clamp(200px, 30vw, 320px);
+  background-color: var(--glass-bg);
+  border-radius: var(--glass-radius);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  padding: clamp(16px, 2.5vw, 30px) clamp(10px, 1.5vw, 18px) clamp(38px, 6vw, 66px);
+}
+
+/* ---- Bar column (button) ---- */
+.barCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  position: relative;
+  gap: clamp(3px, 0.5vw, 6px);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease, opacity 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.barCol:active {
+  transform: scale(0.96);
+}
+
+/* Dimmed non-selected competitor */
+.colDimmed {
+  opacity: 0.22;
+}
+
+/* Dimmed Red Bull bar (keep slightly more visible) */
+.colRbDimmed {
+  opacity: 0.45;
+}
+
+/* Selected bar — subtle lift */
+.colSelected {
+  transform: scale(1.04);
+}
+.colSelected:active {
+  transform: scale(1.00);
+}
+
+/* ---- Count value above bar ---- */
+.barValue {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(7px, 1vw, 11px);
+  color: var(--text-faint);
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.colSelected .barValue {
+  color: var(--text-muted);
+}
+
+/* ---- Bar outer (track) ---- */
+.barOuter {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 0;
+  overflow: visible; /* allows cap line to bleed above */
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ---- Bar fill ---- */
+.barFill {
+  width: 100%;
+  height: 0%;
+  border-radius: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(110, 140, 210, 0.5) 0%,
+    rgba(40, 60, 130, 0.28) 100%
+  );
+  position: relative;
+  overflow: visible; /* cap line sits above track */
+  /* Transition always active so height change triggers it cleanly */
+  transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Red Bull bar fill */
+.barFillRb {
+  background: linear-gradient(
+    180deg,
+    #E8103A 0%,
+    #C10030 35%,
+    #8A0022 100%
+  );
+  box-shadow: 0 0 20px rgba(210, 0, 60, 0.4);
+}
+
+/* Pulse glow on RB bars after animation completes */
+.rbCol .barFillRb {
+  animation: pulseGlow 3s ease-in-out 1.8s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(210, 0, 60, 0.4); }
+  50%       { box-shadow: 0 0 36px rgba(210, 0, 60, 0.75); }
+}
+
+/* ---- Cap line (repurposed liquidSurface) ---- */
+/* Sits above the fill, flush with the top edge */
+.liquidSurface {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(200, 225, 255, 0.95);
+  box-shadow: 0 0 8px rgba(180, 215, 255, 0.8);
+}
+
+.barFillRb .liquidSurface {
+  background: rgba(255, 170, 185, 1);
+  box-shadow: 0 0 10px rgba(255, 100, 130, 1);
+}
+
+/* ---- Shimmer — hidden ---- */
+.shimmer {
+  display: none;
+}
+
+/* ---- Bar label ---- */
+.barLabel {
+  position: absolute;
+  bottom: clamp(-28px, -4.5vw, -40px);
+  left: 50%;
+  transform: translateX(-50%) rotate(-40deg);
+  transform-origin: top center;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(6px, 0.85vw, 9px);
+  color: var(--text-faint);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.colSelected .barLabel {
+  color: var(--text-muted);
+}
+
+/* ---- Tap hint ---- */
+.hint {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(9px, 1.3vw, 14px);
+  color: var(--text-faint);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: clamp(4px, 0.6vw, 8px);
+}

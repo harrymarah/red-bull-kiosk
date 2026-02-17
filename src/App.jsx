@@ -8,6 +8,7 @@ import EventsPage from './pages/EventsPage';
 import BrandPage from './pages/BrandPage';
 import FitnessPage from './pages/FitnessPage';
 import NewProductsPage from './pages/NewProductsPage';
+import MarketPage from './pages/MarketPage';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="category/brand" element={<BrandPage />} />
           <Route path="category/fitness" element={<FitnessPage />} />
           <Route path="category/new-products" element={<NewProductsPage />} />
+          <Route path="category/market" element={<MarketPage />} />
           <Route path="category/:slug" element={<CategoryPage />} />
         </Route>
       </Routes>

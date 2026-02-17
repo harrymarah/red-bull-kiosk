@@ -42,7 +42,7 @@ const fullEditions = [
 ];
 
 const editionsBenefits = [
-  { icon: 'T', label: 'Consumer\nChoice', color: 'gold' },
+  { icon: '★', label: 'Consumer\nChoice', color: 'gold' },
   { icon: 'F', label: 'Same\nFunctionality', color: 'cyan' },
   { icon: 'SF', label: 'Sugarfree\nOptions', color: 'blue' },
 ];
