@@ -28,13 +28,6 @@ const categories = [
     to: '/category/fitness',
   },
   {
-    id: 'market',
-    title: 'CATEGORY',
-    subtitle: 'MARKET PERFORMANCE',
-    span: 'full',
-    to: '/category/market',
-  },
-  {
     id: 'events',
     title: '2026',
     subtitle: 'EVENTS',
@@ -49,11 +42,11 @@ const categories = [
     to: '/category/chillers',
   },
   {
-    id: 'new-products',
-    title: 'NEW PRODUCTS',
-    subtitle: 'NPD \u2022 COMING SOON',
+    id: 'market',
+    title: 'CATEGORY',
+    subtitle: 'MARKET PERFORMANCE',
     span: 'full',
-    to: '/category/new-products',
+    to: '/category/market',
   },
 ];
 

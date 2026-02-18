@@ -135,6 +135,44 @@
   margin-bottom: clamp(20px, 3vw, 36px);
 }
 
+/* ---- New product spotlight glow (cherry-pink) ---- */
+.newProductGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(220, 60, 110, 0.35) 0%,
+    rgba(180, 20, 60, 0) 100%
+  );
+  pointer-events: none;
+  animation: glowBreath 4s ease-in-out infinite;
+}
+
+@keyframes glowBreath {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1);   }
+  50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* ---- "New for 2026" chip ---- */
+.heroChip {
+  position: relative;
+  background: var(--rb-red);
+  color: #fff;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(10px, 1.4vw, 15px);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: clamp(10px, 1.5vw, 18px);
+}
+
 /* ---- Ingredients grid ---- */
 .ingredientGrid {
   display: grid;

@@ -90,6 +90,21 @@ export default function ProductPage() {
 
       <GradientDivider />
 
+      {/* New product spotlight — Cherry Sakura */}
+      <section className={styles.hero}>
+        <div className={styles.newProductGlow} aria-hidden="true" />
+        <span className={styles.heroChip}>New for 2026</span>
+        <img
+          src="/assets/images/product_images/GB_CS_355ml_AC_The Spring Edition_COUNTRY_RGB_PACKRQ-3810_Cold_Open_Front_DRES.png"
+          alt="Spring Edition — Cherry Sakura"
+          className={styles.heroCan}
+        />
+        <h2 className={styles.heroName}>SPRING EDITION</h2>
+        <p className={styles.heroDetail}>Cherry Sakura · 355ml · Sugarfree</p>
+      </section>
+
+      <GradientDivider />
+
       {/* Sugar-free callout */}
       <section className={styles.callout}>
         <div className={styles.calloutCans}>
