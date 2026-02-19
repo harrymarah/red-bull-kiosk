@@ -143,7 +143,7 @@ export default function InteractiveChart({ bars, unit = 'M', scrollable = false,
               </div>
 
               {/* Label */}
-              <span className={`${styles.barLabel} ${scrollable ? styles.barLabelStatic : ''}`}>
+              <span className={scrollable ? styles.barLabelStatic : styles.barLabel}>
                 {bar.label}
               </span>
             </button>

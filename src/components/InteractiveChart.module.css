@@ -138,15 +138,25 @@
   scroll-snap-align: start;
 }
 
-/* Unrotated, wrapping label for scrollable mode */
+/* Unrotated, wrapping label for scrollable mode — fully self-contained */
 .barLabelStatic {
+  position: absolute;
+  left: 50%;
   transform: translateX(-50%);
+  bottom: clamp(-72px, -12vw, -108px);
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(10px, 1.5vw, 14px);
+  color: var(--text-faint);
   white-space: normal;
   text-align: center;
   width: clamp(108px, 16vw, 148px);
   line-height: 1.4;
-  bottom: clamp(-72px, -12vw, -108px);
-  font-size: clamp(10px, 1.5vw, 14px);
+  transition: color 0.25s ease;
+}
+
+.colSelected .barLabelStatic {
+  color: var(--text-muted);
 }
 
 /* ---- Chart area ---- */
