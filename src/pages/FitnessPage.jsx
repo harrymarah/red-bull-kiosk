@@ -53,20 +53,24 @@ export default function FitnessPage() {
         </div>
       </section>
 
-      {/* Action photo strip */}
+      {/* Action photo carousel */}
       <section className={styles.photoStrip}>
-        <div className={`${styles.photoBlock} ${styles.tall}`}>
-          <img src="/assets/images/fitness/red-bull-pit-race.jpeg" alt="Red Bull Pit Race" />
-          <span className={styles.photoCaption}>Pit Race</span>
-        </div>
-        <div className={styles.photoBlock}>
-          <img src="/assets/images/fitness/box-jump.jpg" alt="Box jump" />
-          <span className={styles.photoCaption}>Box Jump</span>
-        </div>
-        <div className={styles.photoBlock}>
-          <img src="/assets/images/fitness/tyre-flip.jpg" alt="Tyre carry" />
-          <span className={styles.photoCaption}>Tyre Carry</span>
-        </div>
+        {[1, 2, 3].map((n) => (
+          <div key={n} className={styles.photoSlide}>
+            <div className={`${styles.photoBlock} ${styles.tall}`}>
+              <img src="/assets/images/fitness/red-bull-pit-race.jpeg" alt="Red Bull Pit Race" />
+              <span className={styles.photoCaption}>Pit Race</span>
+            </div>
+            <div className={styles.photoBlock}>
+              <img src="/assets/images/fitness/box-jump.jpg" alt="Box jump" />
+              <span className={styles.photoCaption}>Box Jump</span>
+            </div>
+            <div className={styles.photoBlock}>
+              <img src="/assets/images/fitness/tyre-flip.jpg" alt="Tyre carry" />
+              <span className={styles.photoCaption}>Tyre Carry</span>
+            </div>
+          </div>
+        ))}
       </section>
 
       {/* Fitness portfolio */}

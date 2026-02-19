@@ -92,20 +92,24 @@
   letter-spacing: 1px;
 }
 
-/* ---- Scrollable chart variant ---- */
-.chartScrollable {
-  --chart-pad-bottom: clamp(24px, 3.5vw, 40px);
+/* ---- Scrollable outer container (handles overflow-x scroll) ---- */
+/* Chart lives inside; diagonal labels remain within chart's pad-bottom bounds */
+.scrollOuter {
   overflow-x: auto;
-  overflow-y: visible;
-  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  /* Extra height to fit in-flow labels below bars */
-  height: clamp(280px, 42vw, 440px);
+  touch-action: pan-x;
 }
 
-.chartScrollable::-webkit-scrollbar {
+.scrollOuter::-webkit-scrollbar {
   display: none;
+}
+
+/* Chart inside the scrollable outer — height increased for caffeine proportions,
+   pad-bottom intentionally matches base chart so diagonal labels stay in-bounds */
+.chartForScroll {
+  height: clamp(220px, 34vw, 360px);
 }
 
 /* ---- Reference line ---- */
@@ -115,7 +119,7 @@
   right: clamp(10px, 1.5vw, 18px);
   bottom: calc(
     var(--chart-pad-bottom) +
-    var(--ref-ratio) * (100% - var(--chart-pad-top) - var(--chart-pad-bottom))
+    var(--ref-ratio) * (100% - var(--chart-pad-top) - var(--chart-pad-bottom) - var(--bar-overhead))
   );
   border-top: 1px dashed rgba(255, 255, 255, 0.3);
   pointer-events: none;
@@ -138,35 +142,18 @@
 .barColFixed {
   flex: 0 0 clamp(130px, 20vw, 180px);
   scroll-snap-align: start;
-}
-
-/* Scrollable columns flow top-to-bottom (count → bar → label) */
-.barColScrollable {
-  justify-content: flex-start;
-}
-
-/* In-flow label for scrollable mode — no absolute positioning */
-.barLabelStatic {
-  font-family: var(--font-primary);
-  font-weight: 500;
-  font-size: clamp(12px, 1.9vw, 18px);
-  color: var(--text-faint);
-  white-space: normal;
-  text-align: center;
-  width: 100%;
-  line-height: 1.4;
-  margin-top: clamp(8px, 1.2vw, 14px);
-  transition: color 0.25s ease;
-}
-
-.colSelected .barLabelStatic {
-  color: var(--text-muted);
+  /* Allow horizontal pan to pass through to parent scroll container */
+  touch-action: pan-x;
 }
 
 /* ---- Chart area ---- */
 .chart {
   --chart-pad-top:    clamp(16px, 2.5vw, 30px);
-  --chart-pad-bottom: clamp(38px, 6vw, 66px);
+  --chart-pad-bottom: clamp(40px, 6vw, 68px);
+  /* Space consumed by the count label + its gap above barOuter.
+     Required so the reference line aligns with actual bar fill heights,
+     not the full content area. Tracks: barValue font-size × 1.2 + col-gap */
+  --bar-overhead:     clamp(12px, 1.8vw, 20px);
   display: flex;
   align-items: flex-end;
   gap: clamp(5px, 0.8vw, 10px);
@@ -313,6 +300,36 @@
   border-color: rgba(255, 200, 0, 0.3);
 }
 
+/* Blue highlight variant */
+.barFillBlue {
+  background: linear-gradient(
+    180deg,
+    #4A7FD4 0%,
+    #2D5FB8 35%,
+    #1A3D8F 100%
+  );
+  box-shadow: 0 0 20px rgba(50, 89, 159, 0.45);
+}
+
+.rbCol .barFillBlue {
+  animation: pulseGlowBlue 3s ease-in-out 1.8s infinite;
+}
+
+@keyframes pulseGlowBlue {
+  0%, 100% { box-shadow: 0 0 20px rgba(50, 89, 159, 0.45); }
+  50%       { box-shadow: 0 0 36px rgba(50, 89, 159, 0.8); }
+}
+
+.barFillBlue .liquidSurface {
+  background: rgba(150, 200, 255, 1);
+  box-shadow: 0 0 10px rgba(100, 170, 255, 1);
+}
+
+.calloutHighlightBlue {
+  background-color: rgba(50, 89, 159, 0.15);
+  border-color: rgba(74, 127, 212, 0.35);
+}
+
 /* ---- Cap line (repurposed liquidSurface) ---- */
 /* Sits above the fill, flush with the top edge */
 .liquidSurface {
@@ -339,15 +356,17 @@
 /* ---- Bar label ---- */
 .barLabel {
   position: absolute;
-  bottom: clamp(-28px, -4.5vw, -40px);
+  top: calc(100% + clamp(8px, 1.2vw, 14px));
   left: 50%;
-  transform: translateX(-50%) rotate(-40deg);
-  transform-origin: top center;
+  transform: translateX(-50%);
   font-family: var(--font-primary);
   font-weight: 500;
   font-size: clamp(6px, 0.85vw, 9px);
   color: var(--text-faint);
-  white-space: nowrap;
+  white-space: normal;
+  width: 100%;
+  word-break: break-word;
+  text-align: center;
   transition: color 0.25s ease;
 }
 

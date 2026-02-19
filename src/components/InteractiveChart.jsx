@@ -11,7 +11,7 @@ export default function InteractiveChart({ bars, unit = 'M', scrollable = false,
   const rafRef = useRef(null)
   const maxValue = Math.max(...bars.map((b) => b.value))
 
-  // Trigger when chart scrolls into view (IO fires async, after initial 0% paint)
+  // Trigger when chart scrolls into view
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -53,6 +53,73 @@ export default function InteractiveChart({ bars, unit = 'M', scrollable = false,
   const selectedBar = bars.find((b) => b.label === selected)
   const hasSelection = selected !== null
 
+  const chartContent = (
+    <div className={`${styles.chart} ${scrollable ? styles.chartForScroll : ''}`}>
+      {referenceLine && (
+        <div
+          className={styles.referenceLine}
+          style={{ '--ref-ratio': referenceLine.value / maxValue }}
+          aria-hidden="true"
+        >
+          <span className={styles.referenceLineLabel}>{referenceLine.label}</span>
+        </div>
+      )}
+      {bars.map((bar, i) => {
+        const pct = (bar.value / maxValue) * 100
+        const isSelected = selected === bar.label
+        const isDimmed = hasSelection && !isSelected
+        const isRbDimmed = isDimmed && bar.highlight
+
+        return (
+          <button
+            key={bar.label}
+            className={[
+              styles.barCol,
+              scrollable ? styles.barColFixed : '',
+              bar.highlight ? styles.rbCol : '',
+              isSelected ? styles.colSelected : '',
+              isDimmed ? styles.colDimmed : '',
+              isRbDimmed ? styles.colRbDimmed : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            onClick={() => handleSelect(bar.label)}
+            aria-label={`${bar.label}: ${bar.value}${unit}`}
+            aria-pressed={isSelected}
+          >
+            {/* Count above bar */}
+            <span className={styles.barValue}>{counts[bar.label]}{unit}</span>
+
+            {/* Bar container */}
+            <div className={styles.barOuter}>
+              <div
+                className={`${styles.barFill} ${
+                  bar.highlight
+                    ? highlightColor === 'yellow'
+                      ? styles.barFillYellow
+                      : highlightColor === 'blue'
+                        ? styles.barFillBlue
+                        : styles.barFillRb
+                    : ''
+                }`}
+                style={{
+                  height: animated ? `${pct}%` : '0%',
+                  transitionDelay: animated ? `${i * 0.07}s` : '0s',
+                }}
+              >
+                <div className={styles.liquidSurface} />
+                <div className={styles.shimmer} />
+              </div>
+            </div>
+
+            {/* Label — diagonal, absolute, within chart pad-bottom bounds */}
+            <span className={styles.barLabel}>{bar.label}</span>
+          </button>
+        )
+      })}
+    </div>
+  )
+
   return (
     <div className={styles.wrapper} ref={wrapperRef}>
       {/* Callout panel — slides in when a bar is selected */}
@@ -67,7 +134,9 @@ export default function InteractiveChart({ bars, unit = 'M', scrollable = false,
               selectedBar.highlight
                 ? highlightColor === 'yellow'
                   ? styles.calloutHighlightYellow
-                  : styles.calloutHighlight
+                  : highlightColor === 'blue'
+                    ? styles.calloutHighlightBlue
+                    : styles.calloutHighlight
                 : ''
             }`}
           >
@@ -85,72 +154,14 @@ export default function InteractiveChart({ bars, unit = 'M', scrollable = false,
         )}
       </div>
 
-      {/* Chart */}
-      <div className={`${styles.chart} ${scrollable ? styles.chartScrollable : ''}`}>
-        {referenceLine && (
-          <div
-            className={styles.referenceLine}
-            style={{ '--ref-ratio': referenceLine.value / maxValue }}
-            aria-hidden="true"
-          >
-            <span className={styles.referenceLineLabel}>{referenceLine.label}</span>
-          </div>
-        )}
-        {bars.map((bar, i) => {
-          const pct = (bar.value / maxValue) * 100
-          const isSelected = selected === bar.label
-          const isDimmed = hasSelection && !isSelected
-          const isRbDimmed = isDimmed && bar.highlight
-
-          return (
-            <button
-              key={bar.label}
-              className={[
-                styles.barCol,
-                scrollable ? styles.barColFixed : '',
-                scrollable ? styles.barColScrollable : '',
-                bar.highlight ? styles.rbCol : '',
-                isSelected ? styles.colSelected : '',
-                isDimmed ? styles.colDimmed : '',
-                isRbDimmed ? styles.colRbDimmed : '',
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              onClick={() => handleSelect(bar.label)}
-              aria-label={`${bar.label}: ${bar.value}${unit}`}
-              aria-pressed={isSelected}
-            >
-              {/* Count above bar */}
-              <span className={styles.barValue}>{counts[bar.label]}{unit}</span>
-
-              {/* Bar container */}
-              <div className={styles.barOuter}>
-                <div
-                  className={`${styles.barFill} ${
-                    bar.highlight
-                      ? highlightColor === 'yellow'
-                        ? styles.barFillYellow
-                        : styles.barFillRb
-                      : ''
-                  }`}
-                  style={{
-                    height: animated ? `${pct}%` : '0%',
-                    transitionDelay: animated ? `${i * 0.07}s` : '0s',
-                  }}
-                >
-                  <div className={styles.liquidSurface} />
-                  <div className={styles.shimmer} />
-                </div>
-              </div>
-
-              {/* Label */}
-              <span className={scrollable ? styles.barLabelStatic : styles.barLabel}>
-                {bar.label}
-              </span>
-            </button>
-          )
-        })}
-      </div>
+      {/* Chart — wrapped in scroll container when scrollable prop is set */}
+      {scrollable ? (
+        <div className={styles.scrollOuter}>
+          {chartContent}
+        </div>
+      ) : (
+        chartContent
+      )}
 
       {/* Tap hint */}
       <p className={styles.hint}>

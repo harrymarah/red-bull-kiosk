@@ -40,6 +40,16 @@ const caffeineBars = [
   { label: 'Cola',               value: 34,  highlight: false, sub: 'Cola — 330ml' },
 ];
 
+// Data from Food Chemistry (Belitz et al., 2004), Stiftung Warentest (7/2012), USDA Nutrient Database
+const sugarBars = [
+  { label: 'Cola',              value: 35, highlight: false, sub: 'Cola — 330ml' },
+  { label: 'Grape Juice',       value: 30, highlight: false, sub: 'Grape Juice — 250ml' },
+  { label: 'Red Bull 250ml',    value: 27, highlight: true,  sub: 'Red Bull Energy Drink — 250ml' },
+  { label: 'Apple Juice',       value: 26, highlight: false, sub: 'Apple Juice — 250ml' },
+  { label: 'Orange Juice',      value: 23, highlight: false, sub: 'Orange Juice — 250ml' },
+  { label: 'Sport Drink',       value: 20, highlight: false, sub: 'Sport Drink — 500ml' },
+];
+
 const heroProduct = products[0];
 
 export default function ProductPage() {
@@ -101,6 +111,20 @@ export default function ProductPage() {
           referenceLine={{ value: 200, label: '200mg single-dose max' }}
         />
         <p className={styles.chartSource}>Source: Manufacturers website</p>
+      </section>
+
+      <GradientDivider />
+
+      {/* Sugar comparison chart */}
+      <section className={styles.section}>
+        <h3 className={styles.sectionTitle}>SUGAR COMPARISON</h3>
+        <p className={styles.sectionSubtitle}>Grams of sugar per serving</p>
+        <InteractiveChart
+          bars={sugarBars}
+          unit="g"
+          highlightColor="blue"
+        />
+        <p className={styles.chartSource}>Source: Food Chemistry (Belitz et al., 2004); Stiftung Warentest 7/2012; USDA Nutrient Database</p>
       </section>
 
       <GradientDivider />

@@ -66,11 +66,11 @@
   -webkit-backdrop-filter: var(--glass-blur);
   box-shadow: var(--glass-shadow);
   margin-bottom: clamp(12px, 2vw, 24px);
+  height: clamp(270px, 28vw, 330px);
 }
 
 .heroImage {
   flex: 1;
-  min-height: clamp(160px, 20vw, 240px);
 }
 
 .heroImage img {
@@ -106,12 +106,26 @@
   line-height: 1.5;
 }
 
-/* ---- Photo strip (masonry) ---- */
+/* ---- Photo carousel ---- */
 .photoStrip {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-bottom: clamp(20px, 3vw, 40px);
+}
+
+.photoStrip::-webkit-scrollbar {
+  display: none;
+}
+
+.photoSlide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(4px, 0.6vw, 8px);
-  margin-bottom: clamp(20px, 3vw, 40px);
 }
 
 .photoBlock {
