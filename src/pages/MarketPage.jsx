@@ -11,16 +11,16 @@ const secondaryStats = [
 
 // Data from Nielsen Scantrack — Top 10 Food & Drink by units
 const chartBars = [
-  { label: 'RB 250ml', value: 129, highlight: true },
-  { label: 'Coca-Cola', value: 111, highlight: false },
-  { label: 'Warburtons', value: 106, highlight: false },
-  { label: 'Hovis', value: 98, highlight: false },
-  { label: 'Milk', value: 77, highlight: false },
-  { label: 'Pepsi 2L', value: 76, highlight: false },
-  { label: 'RB 355ml', value: 76, highlight: true },
-  { label: 'Cola 1.75L', value: 74, highlight: false },
-  { label: 'RB 473ml', value: 65, highlight: true },
-  { label: 'Lurpak', value: 44, highlight: false },
+  { label: 'RB 250ml',   value: 129, highlight: true,  sub: '#1 Food & Drink product in the UK' },
+  { label: 'Coca-Cola',  value: 111, highlight: false, sub: 'Coca-Cola Classic — 330ml' },
+  { label: 'Warburtons', value: 106, highlight: false, sub: 'Warburtons bread range' },
+  { label: 'Hovis',      value: 98,  highlight: false, sub: 'Hovis bread range' },
+  { label: 'Milk',       value: 77,  highlight: false, sub: 'Cloverdale Fresh Milk' },
+  { label: 'Pepsi 2L',   value: 76,  highlight: false, sub: 'Pepsi — 2 litre' },
+  { label: 'RB 355ml',   value: 76,  highlight: true,  sub: 'Red Bull Editions — 355ml format' },
+  { label: 'Cola 1.75L', value: 74,  highlight: false, sub: 'Coca-Cola — 1.75 litre' },
+  { label: 'RB 473ml',   value: 65,  highlight: true,  sub: 'Red Bull — 473ml format' },
+  { label: 'Lurpak',     value: 44,  highlight: false, sub: 'Lurpak Spreadable — 400g' },
 ];
 
 const infoStats = [

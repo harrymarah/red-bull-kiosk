@@ -1,20 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import styles from './InteractiveChart.module.css'
 
-const BAR_DETAIL = {
-  'RB 250ml': { sub: '#1 Food & Drink product in the UK' },
-  'RB 355ml': { sub: 'Red Bull Editions — 355ml format' },
-  'RB 473ml': { sub: 'Red Bull — 473ml format' },
-  'Coca-Cola': { sub: 'Coca-Cola Classic — 330ml' },
-  Warburtons: { sub: 'Warburtons bread range' },
-  Hovis: { sub: 'Hovis bread range' },
-  Milk: { sub: 'Cloverdale Fresh Milk' },
-  'Pepsi 2L': { sub: 'Pepsi — 2 litre' },
-  'Cola 1.75L': { sub: 'Coca-Cola — 1.75 litre' },
-  Lurpak: { sub: 'Lurpak Spreadable — 400g' },
-}
-
-export default function InteractiveChart({ bars }) {
+export default function InteractiveChart({ bars, unit = 'M', scrollable = false, highlightColor = 'red', referenceLine = null }) {
   const [animated, setAnimated] = useState(false)
   const [selected, setSelected] = useState(null)
   const [counts, setCounts] = useState(() =>
@@ -77,7 +64,11 @@ export default function InteractiveChart({ bars }) {
         {selectedBar && (
           <div
             className={`${styles.calloutInner} ${
-              selectedBar.highlight ? styles.calloutHighlight : ''
+              selectedBar.highlight
+                ? highlightColor === 'yellow'
+                  ? styles.calloutHighlightYellow
+                  : styles.calloutHighlight
+                : ''
             }`}
           >
             <div className={styles.calloutTop}>
@@ -86,16 +77,25 @@ export default function InteractiveChart({ bars }) {
                 <span className={styles.calloutBadge}>Red Bull</span>
               )}
             </div>
-            <span className={styles.calloutNum}>{selectedBar.value}M</span>
-            <span className={styles.calloutSub}>
-              {BAR_DETAIL[selectedBar.label]?.sub}
+            <span className={styles.calloutNum}>
+              {selectedBar.value}{unit}
             </span>
+            <span className={styles.calloutSub}>{selectedBar.sub}</span>
           </div>
         )}
       </div>
 
       {/* Chart */}
-      <div className={styles.chart}>
+      <div className={`${styles.chart} ${scrollable ? styles.chartScrollable : ''}`}>
+        {referenceLine && (
+          <div
+            className={styles.referenceLine}
+            style={{ '--ref-ratio': referenceLine.value / maxValue }}
+            aria-hidden="true"
+          >
+            <span className={styles.referenceLineLabel}>{referenceLine.label}</span>
+          </div>
+        )}
         {bars.map((bar, i) => {
           const pct = (bar.value / maxValue) * 100
           const isSelected = selected === bar.label
@@ -107,6 +107,7 @@ export default function InteractiveChart({ bars }) {
               key={bar.label}
               className={[
                 styles.barCol,
+                scrollable ? styles.barColFixed : '',
                 bar.highlight ? styles.rbCol : '',
                 isSelected ? styles.colSelected : '',
                 isDimmed ? styles.colDimmed : '',
@@ -115,32 +116,36 @@ export default function InteractiveChart({ bars }) {
                 .filter(Boolean)
                 .join(' ')}
               onClick={() => handleSelect(bar.label)}
-              aria-label={`${bar.label}: ${bar.value} million units`}
+              aria-label={`${bar.label}: ${bar.value}${unit}`}
               aria-pressed={isSelected}
             >
               {/* Count above bar */}
-              <span className={styles.barValue}>{counts[bar.label]}M</span>
+              <span className={styles.barValue}>{counts[bar.label]}{unit}</span>
 
               {/* Bar container */}
               <div className={styles.barOuter}>
                 <div
                   className={`${styles.barFill} ${
-                    bar.highlight ? styles.barFillRb : ''
+                    bar.highlight
+                      ? highlightColor === 'yellow'
+                        ? styles.barFillYellow
+                        : styles.barFillRb
+                      : ''
                   }`}
                   style={{
                     height: animated ? `${pct}%` : '0%',
                     transitionDelay: animated ? `${i * 0.07}s` : '0s',
                   }}
                 >
-                  {/* Liquid surface shimmer */}
                   <div className={styles.liquidSurface} />
-                  {/* Inner shimmer sweep */}
                   <div className={styles.shimmer} />
                 </div>
               </div>
 
               {/* Label */}
-              <span className={styles.barLabel}>{bar.label}</span>
+              <span className={`${styles.barLabel} ${scrollable ? styles.barLabelStatic : ''}`}>
+                {bar.label}
+              </span>
             </button>
           )
         })}

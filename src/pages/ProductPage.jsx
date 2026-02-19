@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import GradientDivider from '../components/GradientDivider';
 import ProductCard from '../components/ProductCard';
+import InteractiveChart from '../components/InteractiveChart';
 import styles from './ProductPage.module.css';
 
 const products = [
@@ -22,6 +23,21 @@ const ingredients = [
   { letter: 'B', label: 'B-Vitamins', color: 'yellow' },
   { letter: 'C', label: 'Caffeine', color: 'red' },
   { letter: 'S', label: 'Sugars', color: 'blue' },
+];
+
+// Data from Manufacturers website — caffeine content by drink (mg)
+const caffeineBars = [
+  { label: 'Large Americano',    value: 300, highlight: false, sub: 'Large Americano Coffee — 590ml' },
+  { label: 'Medium Americano',   value: 225, highlight: false, sub: 'Medium Americano Coffee — 470ml' },
+  { label: 'Energy Shot',        value: 210, highlight: false, sub: 'Typical Energy Shot — 60ml' },
+  { label: 'Energy Drink 500ml', value: 160, highlight: false, sub: 'Typical Energy Drink — 500ml' },
+  { label: 'Red Bull 473ml',     value: 151, highlight: true,  sub: 'Red Bull Energy Drink — 473ml' },
+  { label: 'Small Americano',    value: 150, highlight: false, sub: 'Small Americano Coffee — 235ml' },
+  { label: 'Red Bull 355ml',     value: 114, highlight: true,  sub: 'Red Bull Energy Drink — 355ml' },
+  { label: 'Red Bull 250ml',     value: 80,  highlight: true,  sub: 'Red Bull Energy Drink — 250ml' },
+  { label: 'Single Espresso',    value: 75,  highlight: false, sub: 'Single Espresso — 30ml' },
+  { label: 'Black Tea',          value: 47,  highlight: false, sub: 'Black Tea — 235ml' },
+  { label: 'Cola',               value: 34,  highlight: false, sub: 'Cola — 330ml' },
 ];
 
 const heroProduct = products[0];
@@ -73,6 +89,22 @@ export default function ProductPage() {
 
       <GradientDivider />
 
+      {/* Caffeine comparison chart */}
+      <section className={styles.section}>
+        <h3 className={styles.sectionTitle}>CAFFEINE COMPARISON</h3>
+        <p className={styles.sectionSubtitle}>Milligrams per serving</p>
+        <InteractiveChart
+          bars={caffeineBars}
+          unit="mg"
+          scrollable
+          highlightColor="yellow"
+          referenceLine={{ value: 200, label: '200mg single-dose max' }}
+        />
+        <p className={styles.chartSource}>Source: Manufacturers website</p>
+      </section>
+
+      <GradientDivider />
+
       {/* Product range grid */}
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>THE FULL RANGE</h3>
@@ -100,7 +132,7 @@ export default function ProductPage() {
           className={styles.heroCan}
         />
         <h2 className={styles.heroName}>SPRING EDITION</h2>
-        <p className={styles.heroDetail}>Cherry Sakura · 355ml · Sugarfree</p>
+        <p className={styles.heroDetail}>Cherry Sakura · 355ml</p>
       </section>
 
       <GradientDivider />

@@ -92,8 +92,67 @@
   letter-spacing: 1px;
 }
 
+/* ---- Scrollable chart variant ---- */
+.chartScrollable {
+  --chart-pad-bottom: clamp(80px, 14vw, 120px);
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.chartScrollable::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Reference line ---- */
+.referenceLine {
+  position: absolute;
+  left: clamp(10px, 1.5vw, 18px);
+  right: clamp(10px, 1.5vw, 18px);
+  bottom: calc(
+    var(--chart-pad-bottom) +
+    var(--ref-ratio) * (100% - var(--chart-pad-top) - var(--chart-pad-bottom))
+  );
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+.referenceLineLabel {
+  position: absolute;
+  right: 0;
+  top: -clamp(18px, 2.8vw, 26px);
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(8px, 1.1vw, 12px);
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* Fixed-width bar columns for scrollable mode */
+.barColFixed {
+  flex: 0 0 clamp(110px, 17vw, 150px);
+  scroll-snap-align: start;
+}
+
+/* Unrotated, wrapping label for scrollable mode */
+.barLabelStatic {
+  transform: translateX(-50%);
+  white-space: normal;
+  text-align: center;
+  width: clamp(108px, 16vw, 148px);
+  line-height: 1.4;
+  bottom: clamp(-72px, -12vw, -108px);
+  font-size: clamp(10px, 1.5vw, 14px);
+}
+
 /* ---- Chart area ---- */
 .chart {
+  --chart-pad-top:    clamp(16px, 2.5vw, 30px);
+  --chart-pad-bottom: clamp(38px, 6vw, 66px);
   display: flex;
   align-items: flex-end;
   gap: clamp(5px, 0.8vw, 10px);
@@ -103,7 +162,8 @@
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   box-shadow: var(--glass-shadow);
-  padding: clamp(16px, 2.5vw, 30px) clamp(10px, 1.5vw, 18px) clamp(38px, 6vw, 66px);
+  padding: var(--chart-pad-top) clamp(10px, 1.5vw, 18px) var(--chart-pad-bottom);
+  position: relative;
 }
 
 /* ---- Bar column (button) ---- */
@@ -207,6 +267,36 @@
 @keyframes pulseGlow {
   0%, 100% { box-shadow: 0 0 20px rgba(210, 0, 60, 0.4); }
   50%       { box-shadow: 0 0 36px rgba(210, 0, 60, 0.75); }
+}
+
+/* Yellow highlight variant */
+.barFillYellow {
+  background: linear-gradient(
+    180deg,
+    #FFD600 0%,
+    #E6A800 35%,
+    #B37F00 100%
+  );
+  box-shadow: 0 0 20px rgba(255, 200, 0, 0.35);
+}
+
+.rbCol .barFillYellow {
+  animation: pulseGlowYellow 3s ease-in-out 1.8s infinite;
+}
+
+@keyframes pulseGlowYellow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 200, 0, 0.35); }
+  50%       { box-shadow: 0 0 36px rgba(255, 200, 0, 0.7); }
+}
+
+.barFillYellow .liquidSurface {
+  background: rgba(255, 245, 180, 1);
+  box-shadow: 0 0 10px rgba(255, 230, 80, 1);
+}
+
+.calloutHighlightYellow {
+  background-color: rgba(255, 200, 0, 0.1);
+  border-color: rgba(255, 200, 0, 0.3);
 }
 
 /* ---- Cap line (repurposed liquidSurface) ---- */

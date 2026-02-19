@@ -173,6 +173,28 @@
   margin-bottom: clamp(10px, 1.5vw, 18px);
 }
 
+/* ---- Chart section subtitle + source ---- */
+.sectionSubtitle {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(11px, 1.6vw, 17px);
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-align: center;
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+
+.chartSource {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(9px, 1.2vw, 13px);
+  color: var(--text-faint);
+  text-align: center;
+  margin-top: clamp(16px, 2.5vw, 28px);
+  letter-spacing: 0.5px;
+}
+
 /* ---- Ingredients grid ---- */
 .ingredientGrid {
   display: grid;
