@@ -94,12 +94,14 @@
 
 /* ---- Scrollable chart variant ---- */
 .chartScrollable {
-  --chart-pad-bottom: clamp(80px, 14vw, 120px);
+  --chart-pad-bottom: clamp(24px, 3.5vw, 40px);
   overflow-x: auto;
   overflow-y: visible;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  /* Extra height to fit in-flow labels below bars */
+  height: clamp(280px, 42vw, 440px);
 }
 
 .chartScrollable::-webkit-scrollbar {
@@ -134,24 +136,26 @@
 
 /* Fixed-width bar columns for scrollable mode */
 .barColFixed {
-  flex: 0 0 clamp(110px, 17vw, 150px);
+  flex: 0 0 clamp(130px, 20vw, 180px);
   scroll-snap-align: start;
 }
 
-/* Unrotated, wrapping label for scrollable mode — fully self-contained */
+/* Scrollable columns flow top-to-bottom (count → bar → label) */
+.barColScrollable {
+  justify-content: flex-start;
+}
+
+/* In-flow label for scrollable mode — no absolute positioning */
 .barLabelStatic {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: clamp(-72px, -12vw, -108px);
   font-family: var(--font-primary);
   font-weight: 500;
-  font-size: clamp(10px, 1.5vw, 14px);
+  font-size: clamp(12px, 1.9vw, 18px);
   color: var(--text-faint);
   white-space: normal;
   text-align: center;
-  width: clamp(108px, 16vw, 148px);
+  width: 100%;
   line-height: 1.4;
+  margin-top: clamp(8px, 1.2vw, 14px);
   transition: color 0.25s ease;
 }
 

@@ -108,6 +108,7 @@ export default function InteractiveChart({ bars, unit = 'M', scrollable = false,
               className={[
                 styles.barCol,
                 scrollable ? styles.barColFixed : '',
+                scrollable ? styles.barColScrollable : '',
                 bar.highlight ? styles.rbCol : '',
                 isSelected ? styles.colSelected : '',
                 isDimmed ? styles.colDimmed : '',
