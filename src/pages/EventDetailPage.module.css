@@ -114,3 +114,97 @@
   letter-spacing: 2px;
   margin-top: clamp(12px, 1.8vw, 20px);
 }
+
+/* ---- Event details ---- */
+.details {
+  padding-top: clamp(28px, 4vw, 48px);
+  padding-bottom: clamp(40px, 6vw, 72px);
+}
+
+.headline {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(22px, 3.5vw, 40px);
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  margin-bottom: clamp(16px, 2.5vw, 28px);
+}
+
+/* ---- Date / location meta ---- */
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2vw, 14px);
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(12px, 1.8vw, 20px);
+  color: var(--text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.metaItem svg {
+  flex-shrink: 0;
+  color: var(--rb-red);
+}
+
+/* ---- Stats strip ---- */
+.stats {
+  display: flex;
+  gap: clamp(12px, 2vw, 24px);
+  margin-bottom: clamp(24px, 3.5vw, 40px);
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(14px, 2vw, 24px) clamp(10px, 1.5vw, 18px);
+  background: var(--glass-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--glass-radius);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  gap: clamp(4px, 0.6vw, 8px);
+}
+
+.statValue {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(28px, 4.5vw, 52px);
+  color: var(--rb-red);
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: clamp(9px, 1.3vw, 14px);
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* ---- Body text ---- */
+.body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: clamp(14px, 2vw, 22px);
+  color: var(--text-subtle);
+  line-height: 1.65;
+  margin-bottom: clamp(14px, 2vw, 22px);
+}
+
+.body:last-child {
+  margin-bottom: 0;
+}

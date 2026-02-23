@@ -42,6 +42,49 @@ export default function EventDetailPage() {
         </div>
         <p className={styles.hint}>SWIPE TO BROWSE</p>
       </section>
+
+      {/* Event details */}
+      <section className={styles.details}>
+        {event.headline && <h2 className={styles.headline}>{event.headline}</h2>}
+
+        {(event.date || event.location) && (
+          <div className={styles.meta}>
+            {event.date && (
+              <span className={styles.metaItem}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="3" stroke="currentColor" strokeWidth="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+                {event.date}
+              </span>
+            )}
+            {event.location && (
+              <span className={styles.metaItem}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="12" cy="9" r="2.5" stroke="currentColor" strokeWidth="2" />
+                </svg>
+                {event.location}
+              </span>
+            )}
+          </div>
+        )}
+
+        {event.stats && (
+          <div className={styles.stats}>
+            {event.stats.map((s) => (
+              <div key={s.label} className={styles.stat}>
+                <span className={styles.statValue}>{s.value}</span>
+                <span className={styles.statLabel}>{s.label}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {event.body && event.body.map((para, i) => (
+          <p key={i} className={styles.body}>{para}</p>
+        ))}
+      </section>
     </div>
   );
 }
