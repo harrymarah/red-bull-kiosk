@@ -1,78 +1,7 @@
 import { Link } from 'react-router-dom';
 import GradientDivider from '../components/GradientDivider';
+import { events } from '../data/eventsData';
 import styles from './EventsPage.module.css';
-
-const events = [
-  {
-    name: 'Pro Climbing League',
-    day: '28',
-    month: 'Feb',
-    location: 'London, United Kingdom',
-    tag: 'Climbing',
-    image: '/assets/images/events/pro-climbing-league.png',
-  },
-  {
-    name: 'Red Bull BC One Cypher UK',
-    day: '11',
-    month: 'Apr',
-    location: 'London, United Kingdom',
-    tag: 'Breaking',
-    image: '/assets/images/events/bc-one-cypher-uk.png',
-  },
-  {
-    name: 'Red Bull Basement',
-    day: '09',
-    month: 'May',
-    location: 'London, United Kingdom',
-    tag: 'Innovation',
-    image: '/assets/images/events/red-bull-basement.png',
-  },
-  {
-    name: 'Red Bull Dance Your Style UK National Final',
-    day: '30',
-    month: 'May',
-    location: 'London, United Kingdom',
-    tag: 'Dance',
-    image: '/assets/images/events/dance-your-style.png',
-  },
-  {
-    name: 'Red Bull Soapbox Race London 2026',
-    day: '20',
-    month: 'Jun',
-    location: 'Alexandra Palace, Great Britain',
-    tag: 'Soapbox',
-    featured: true,
-    image: '/assets/images/events/soapbox-race.png',
-  },
-  {
-    name: 'London Premier Padel P1',
-    day: '03',
-    month: 'Aug',
-    dateRange: '03–09 Aug',
-    location: 'London, United Kingdom',
-    tag: 'Padel',
-    image: '/assets/images/events/premier-padel.png',
-  },
-  {
-    name: 'Red Bull Bring The Vim',
-    day: '05',
-    month: 'Sep',
-    location: 'London, United Kingdom',
-    tag: 'Music',
-    image: '/assets/images/events/bring-the-vim.png',
-  },
-];
-
-/* Group events by month */
-const grouped = events.reduce((acc, event) => {
-  const key = event.month;
-  if (!acc[key]) acc[key] = [];
-  acc[key].push(event);
-  return acc;
-}, {});
-
-/* Find featured event */
-const featured = events.find((e) => e.featured);
 
 export default function EventsPage() {
   return (
@@ -88,61 +17,32 @@ export default function EventsPage() {
       {/* Page header */}
       <header className={styles.header}>
         <h1 className={styles.title}>EVENTS</h1>
-        <p className={styles.subtitle}>2026 CALENDAR</p>
+        <p className={styles.subtitle}>FITNESS ACTIVATIONS</p>
         <GradientDivider />
       </header>
 
-      {/* Year strip */}
-      <div className={styles.yearStrip}>2026</div>
-
-      {/* Featured event */}
-      {featured && (
-        <section className={styles.featured}>
-          <span className={styles.featuredChip}>FEATURED EVENT</span>
-          <img
-            src="/assets/images/events/soapbox-race-featured.png"
-            alt={featured.name}
-            className={styles.featuredImage}
-          />
-          <div className={styles.featuredOverlay}>
-            <h2 className={styles.featuredName}>{featured.name}</h2>
-            <span className={styles.featuredDate}>{featured.day} {featured.month} 2026</span>
-          </div>
-        </section>
-      )}
-
-      {/* Month groups */}
-      {Object.entries(grouped).map(([month, monthEvents]) => (
-        <section key={month} className={styles.monthBlock}>
-          <div className={styles.monthHeader}>
-            <span className={styles.monthName}>{month}</span>
-            <span className={styles.eventCount}>
-              {monthEvents.length} {monthEvents.length === 1 ? 'event' : 'events'}
-            </span>
-          </div>
-          {monthEvents.map((event) => (
-            <div key={event.name} className={styles.eventCard}>
-              <div className={styles.dateBadge}>
-                <span className={styles.dateDay}>{event.day}</span>
-                <span className={styles.dateMonth}>{event.month}</span>
-              </div>
-              <div className={styles.eventDetails}>
-                <h4 className={styles.eventName}>{event.name}</h4>
-                <p className={styles.eventLocation}>{event.location}</p>
-                {event.dateRange && <p className={styles.eventDateRange}>{event.dateRange}</p>}
-                <span className={styles.eventTag}>{event.tag}</span>
-              </div>
-              <img
-                src={event.image}
-                alt={event.name}
-                className={styles.eventThumb}
-                loading="lazy"
-              />
+      {/* Event cards grid */}
+      <section className={styles.grid}>
+        {events.map((event) => (
+          <Link
+            key={event.slug}
+            to={`/events/${event.slug}`}
+            className={styles.card}
+          >
+            <img
+              src={event.cover}
+              alt={event.name}
+              className={styles.cardImage}
+              loading="lazy"
+            />
+            <div className={styles.cardOverlay}>
+              <span className={styles.cardTag}>{event.tag}</span>
+              <h2 className={styles.cardName}>{event.name}</h2>
+              <span className={styles.cardCta}>View Event →</span>
             </div>
-          ))}
-        </section>
-      ))}
-
+          </Link>
+        ))}
+      </section>
     </div>
   );
 }

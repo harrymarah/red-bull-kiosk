@@ -9,6 +9,7 @@ import BrandPage from './pages/BrandPage';
 import FitnessPage from './pages/FitnessPage';
 import NewProductsPage from './pages/NewProductsPage';
 import MarketPage from './pages/MarketPage';
+import EventDetailPage from './pages/EventDetailPage';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="category/new-products" element={<NewProductsPage />} />
           <Route path="category/market" element={<MarketPage />} />
           <Route path="category/:slug" element={<CategoryPage />} />
+          <Route path="events/:slug" element={<EventDetailPage />} />
         </Route>
       </Routes>
     </HashRouter>
