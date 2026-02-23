@@ -181,7 +181,7 @@
   font-family: var(--font-primary);
   font-weight: 500;
   font-size: clamp(28px, 4.5vw, 52px);
-  color: var(--rb-red);
+  color: var(--text-primary);
   letter-spacing: 1px;
   line-height: 1;
 }
