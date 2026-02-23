@@ -50,7 +50,12 @@ export default function MarketPage() {
 
       {/* Hero stat — 9.8B */}
       <section className={styles.heroStat}>
-        <div className={styles.heroImagePlaceholder} aria-hidden="true" />
+        <img
+          src="/assets/images/brand/earth.jpg"
+          alt="Earth from orbit"
+          className={styles.heroImage}
+        />
+        <div className={styles.heroGradient} aria-hidden="true" />
         <div className={styles.heroOverlay}>
           <span className={styles.heroBigNumber}>9.8B</span>
           <span className={styles.heroStatLabel}>Cans Sold Worldwide</span>
