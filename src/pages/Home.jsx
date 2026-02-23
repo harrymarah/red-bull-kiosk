@@ -79,7 +79,7 @@ export default function Home() {
           {/* Placeholder — replace with supplied Red Bull logo asset */}
           <img src="/assets/images/red-bull-logo.png" alt="Red Bull" className={styles.logoImg} />
         </div>
-        <p className={styles.tagline}>Red Bull Gives You Wiiings</p>
+        <p className={styles.tagline}>RED BULL GIVES YOU WIIINGS</p>
         <p className={styles.cta}>TOUCH TO EXPLORE</p>
         <GradientDivider />
       </header>

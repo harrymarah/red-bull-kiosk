@@ -303,25 +303,66 @@
   text-align: center;
 }
 
-/* ---- Image placeholder block ---- */
-.imagePlaceholderBlock {
-  padding-bottom: clamp(28px, 4vw, 52px);
+/* ---- 950 Million Cans London aerial ---- */
+.londonStat {
+  position: relative;
+  border-radius: var(--glass-radius);
+  overflow: hidden;
+  margin-bottom: clamp(28px, 4vw, 52px);
 }
 
-.imagePlaceholder {
-  border-radius: var(--glass-radius);
-  border: 1px dashed rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
+.londonImage {
+  width: 100%;
   aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center 60%;
+  display: block;
+  pointer-events: none;
+}
+
+.londonOverlay {
+  position: absolute;
+  inset: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: clamp(2px, 0.4vw, 6px);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 10, 0.25) 0%,
+    rgba(0, 0, 10, 0.1) 50%,
+    rgba(0, 0, 10, 0.45) 100%
+  );
+}
+
+.londonNumber {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: clamp(72px, 13vw, 140px);
+  color: #fff;
+  line-height: 0.9;
+  letter-spacing: -2px;
+}
+
+.londonLabel {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: clamp(32px, 5.5vw, 60px);
+  color: #fff;
+  letter-spacing: 4px;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.londonSub {
   font-family: var(--font-primary);
   font-weight: 500;
-  font-size: clamp(12px, 1.85vw, 20px);
-  color: var(--text-faint);
+  font-size: clamp(11px, 1.6vw, 18px);
+  color: rgba(255, 255, 255, 0.65);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
+  margin-top: clamp(6px, 1vw, 12px);
 }
 
 /* ---- Footer ---- */

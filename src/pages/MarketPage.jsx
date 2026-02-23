@@ -111,10 +111,17 @@ export default function MarketPage() {
 
       <div className={styles.dividerSpacing}><GradientDivider /></div>
 
-      {/* Image placeholder block */}
-      <section className={styles.imagePlaceholderBlock}>
-        <div className={styles.imagePlaceholder}>
-          [ Market growth / share image ]
+      {/* 950 Million Cans — London aerial */}
+      <section className={styles.londonStat}>
+        <img
+          src="/assets/images/market/london-aerial.jpg"
+          alt="Aerial view of London"
+          className={styles.londonImage}
+        />
+        <div className={styles.londonOverlay}>
+          <span className={styles.londonNumber}>950</span>
+          <span className={styles.londonLabel}>MILLION CANS</span>
+          <span className={styles.londonSub}>Sold in the UK</span>
         </div>
       </section>
 
