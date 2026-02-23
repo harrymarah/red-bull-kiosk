@@ -100,6 +100,19 @@ export default function BrandPage() {
         ))}
       </section>
 
+      {/* 9.8 Billion Cans globe */}
+      <section className={styles.globe}>
+        <img
+          src="/assets/images/brand/earth.jpg"
+          alt="Earth from orbit"
+          className={styles.globeImage}
+        />
+        <div className={styles.globeOverlay}>
+          <span className={styles.globeNumber}>9.8</span>
+          <span className={styles.globeLabel}>BILLION CANS</span>
+        </div>
+      </section>
+
       <GradientDivider />
 
       {/* Video */}
