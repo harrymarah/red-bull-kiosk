@@ -6,10 +6,20 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Perform X – Red Bull Kiosk Experience</title>
-    <script type="module" crossorigin src="/assets/index-CcXQoPzA.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-B1wNGsex.css">
+    <link rel="manifest" href="/manifest.json" />
+    <script type="module" crossorigin src="/assets/index-CtOzOPII.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C-pr6F96.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.warn('Service worker registration failed:', err);
+          });
+        });
+      }
+    </script>
   </body>
 </html>
